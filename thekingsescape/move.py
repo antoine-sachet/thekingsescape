@@ -1,4 +1,4 @@
-from cell import CellException
+from thekingsescape.cell import CellException
 
 
 class IllegalMoveException(Exception):

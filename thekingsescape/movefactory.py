@@ -1,6 +1,6 @@
 import re
 import string
-from move import Move
+from thekingsescape.move import Move
 
 
 class MoveFactory:

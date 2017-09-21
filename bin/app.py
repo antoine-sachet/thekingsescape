@@ -1,3 +1,6 @@
+import sys
+sys.path.append("..")
+
 from thekingsescape.game import Game
 from thekingsescape.player import Player
 from thekingsescape.view import TextView

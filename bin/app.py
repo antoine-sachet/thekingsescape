@@ -1,7 +1,7 @@
-from game import Game
-from player import Player
-from view import TextView
-from movefactory import MoveFactory
+from thekingsescape.game import Game
+from thekingsescape.player import Player
+from thekingsescape.view import TextView
+from thekingsescape.movefactory import MoveFactory
 
 
 def main():
@@ -15,7 +15,6 @@ def main():
 
     mf = MoveFactory(g)
     m = mf.buildMoveFromString("A4 to E4", p1)
-    print(m)
 
     p1.perform(m)
 

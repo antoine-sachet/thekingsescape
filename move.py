@@ -17,7 +17,7 @@ class Move:
         self.player = player
 
     def do_with(self, player):
-        if(not self.isLegal(player)):
+        if(not self.isLegal()):
             raise IllegalMoveException(self.whyNotLegal(player))
         pawn = self.startCell.takePawn()
         self.endCell.placePawn(pawn)
@@ -50,11 +50,11 @@ class Move:
         if(not self._isStraightLine()):
             raise IllegalMoveException("Move is not a straight line")
         path = self._getPath()
-        if(any(cell.isOccupied for cell in path)):
+        if(any(cell.isOccupied() for cell in path)):
             raise IllegalMoveException("There are pawns on the path")
         return True
 
-    def _getLegalityStatus(self, player):
+    def _getLegalityStatus(self):
         try:
             self._checkPawn()
             self._checkPlayer()
@@ -64,11 +64,11 @@ class Move:
             return (False, errorMessage)
         return (True, "Legal move")
 
-    def isLegal(self, player):
-        return self._getLegalityStatus(player)[0]
+    def isLegal(self):
+        return self._getLegalityStatus()[0]
 
-    def whyNotLegal(self, player):
-        return self._getLegalityStatus(player)[1]
+    def whyNotLegal(self):
+        return self._getLegalityStatus()[1]
 
     def __str__(self):
         return str(self.startCell) + "->" + str(self.endCell)

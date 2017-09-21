@@ -1,6 +1,7 @@
 from game import Game
 from player import Player
 from view import TextView
+from movefactory import MoveFactory
 
 
 def main():
@@ -9,6 +10,14 @@ def main():
 
     g = Game(attackingPlayer=p1, defendingPlayer=p2)
     v = TextView(g)
+
+    v.render()
+
+    mf = MoveFactory(g)
+    m = mf.buildMoveFromString("A4 to E4", p1)
+    print(m)
+
+    p1.perform(m)
 
     v.render()
 

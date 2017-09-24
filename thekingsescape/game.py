@@ -1,5 +1,5 @@
-from thekingsescape.cell import Cell, CellType
-from thekingsescape.pawn import Attacker, Defender, King
+from .cell import Cell, CellType
+from .pawn import Attacker, Defender, King
 
 
 class Game:

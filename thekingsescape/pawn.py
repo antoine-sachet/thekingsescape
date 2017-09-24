@@ -1,4 +1,4 @@
-from thekingsescape.cell import CellType
+from .cell import CellType
 
 
 class Pawn:

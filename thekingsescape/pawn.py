@@ -19,7 +19,7 @@ class Pawn:
         return 'P'
 
     def __repr__(self):
-        return "Pawn(player=%r)" % self.player
+        return "Pawn(player=%r)" % self.owner
 
 
 class Attacker(Pawn):
@@ -27,7 +27,7 @@ class Attacker(Pawn):
         return '♂'
 
     def __repr__(self):
-        return "Attacker(player=%r)" % self.player
+        return "Attacker(player=%r)" % self.owner
 
 
 class Defender(Pawn):
@@ -35,7 +35,7 @@ class Defender(Pawn):
         return '♀'
 
     def __repr__(self):
-        return "Defender(player=%r)" % self.player
+        return "Defender(player=%r)" % self.owner
 
 
 class King(Pawn):
@@ -46,4 +46,4 @@ class King(Pawn):
         return '♦'
 
     def __repr__(self):
-        return "King(player=%r)" % self.player
+        return "King(player=%r)" % self.owner

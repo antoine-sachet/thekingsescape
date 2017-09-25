@@ -29,7 +29,7 @@ class TextView(AbstractView):
     """ Concrete implementation of a textual view."""
 
     def __init__(self, stream):
-        self.stream
+        self.stream = stream
 
     def _toString(self, game):
         def row2str(row, i):

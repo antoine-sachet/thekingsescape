@@ -2,6 +2,7 @@ from .cell import CellException
 
 
 class IllegalMoveException(Exception):
+    """Exception thrown when an illegal move is executed."""
     pass
 
 

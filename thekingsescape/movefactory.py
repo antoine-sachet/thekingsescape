@@ -4,6 +4,16 @@ from .move import Move
 
 
 class MoveFactory:
+    """Helper class to create moves from user text inputs.
+
+    Regex are used to extract the cell from strings of the form
+    '<Letter><Number> to <Letter><Number>'
+
+    Useful public method is buildMoveFromString()
+
+    This class is used by the TextController class.
+    """
+
     def __init__(self,
                  game,
                  moveRegex=r"([A-Za-z]\d+) *to *([A-Za-z]\d+)",
@@ -27,7 +37,7 @@ class MoveFactory:
             row = int(row)
             cell = self.game.getCell(row, col)
         except IndexError:
-            raise ValueError("Incorrect cell definition:" + (row, col))
+            raise ValueError("Incorrect cell definition:" + repr((row, col)))
         return cell
 
     def _extractCells(self, moveStr):
@@ -39,5 +49,10 @@ class MoveFactory:
         return cells
 
     def buildMoveFromString(self, moveStr, player):
+        """ Returns a Move from a user-entered string and a player"""
+
         cells = self._extractCells(moveStr)
         return Move(cells[0], cells[1], self.game, player)
+
+    def __repr__(self):
+        return "MoveFactory(game=%r)" % self.game

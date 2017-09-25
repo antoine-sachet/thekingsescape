@@ -1,26 +1,39 @@
 import string
 
 
-class View:
+class AbstractView:
+    """Abstract base class for views
 
-    def __init__(self, game):
-        self.game = game
+    A view allows to render graphically a game.
+    A view should be registered with the game controller:
+    controller.registerView(myView)
 
-    def render(self):
+    The main method to implement is render(self, game).
+    """
+
+    def __init__(self):
         pass
 
-    def glimpse(self):
+    def render(self, game):
+        raise NotImplementedError("AbstractView should not be instantiated")
+
+    def glimpse(self, game):
         def row2str(row):
             return ''.join([cell.glimpse() for cell in row])
 
-        body = '\n'.join([row2str(row) for row in self.game.cells])
+        body = '\n'.join([row2str(row) for row in game.cells])
         return body
 
 
-class TextView(View):
-    def toString(self):
+class TextView(AbstractView):
+    """ Concrete implementation of a textual view."""
+
+    def __init__(self, stream):
+        self.stream
+
+    def _toString(self, game):
         def row2str(row, i):
-            if(i in [0, self.game.width + 1]):
+            if(i in [0, game.width + 1]):
                 numstr = 2 * ' '
             else:
                 numstr = str(i).ljust(2)
@@ -32,16 +45,18 @@ class TextView(View):
         # toprow = 4 * ' ' + numrow + ' '
 
         toprow = list(string.ascii_uppercase)
-        toprow = toprow[:self.game.width]
+        toprow = toprow[:game.width]
         toprow = 4 * ' ' + '   '.join(toprow)
 
         body = '\n'.join(
-            [row2str(self.game.cells[i], i)
-             for i in range(len(self.game.cells))])
+            [row2str(game.cells[i], i)
+             for i in range(len(game.cells))])
         return toprow + '\n' + body
 
-    def render(self):
-        print(self.toString())
+    def render(self, game):
+        """Prints a text rendering of the current state
+        of the game to the stream provided."""
+        print(self._toString(game))
 
-    def __str___(self):
-        return "Text view of game: " + str(self.game)
+    def __repr___(self):
+        return "TextView(%s)" % repr(self.game)

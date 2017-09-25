@@ -59,4 +59,4 @@ class TextView(AbstractView):
         print(self._toString(game))
 
     def __repr___(self):
-        return "TextView(%s)" % repr(self.game)
+        return "TextView(game=%r, stream=%r)" % (self.game, self.stream)

@@ -6,4 +6,4 @@ class Player:
         return self.name
 
     def __repr__(self):
-        return "Player(name=%s)" % repr(self.name)
+        return "Player(name=%r)" % self.name

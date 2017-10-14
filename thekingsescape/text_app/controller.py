@@ -1,7 +1,7 @@
-from ..game import Game
-from ..player import Player
-from ..movefactory import MoveFactory
-from ..move import IllegalMoveException
+from ..game.game import Game
+from ..game.player import Player
+from ..game.move import IllegalMoveException
+from .movefactory import MoveFactory
 
 
 class Controller:

@@ -1,4 +1,6 @@
 import string
+# app is also imported from flaskapp.app
+# when a WebView is instantiated.
 
 
 class AbstractView:
@@ -60,3 +62,40 @@ class TextView(AbstractView):
 
     def __repr___(self):
         return "TextView(game=%r, stream=%r)" % (self.game, self.stream)
+
+
+class WebView(AbstractView):
+
+    def __init__(self):
+        from .flaskapp import app
+        self.app = app
+        self.app.run(debug=True)
+
+    @staticmethod
+    def pawn2html(pawn):
+        return ("<div class=%s></div>" %
+                type(pawn).__name__)
+
+    @staticmethod
+    def cell2html(cell):
+        pawn_html = ""
+        if(cell.isOccupied()):
+            pawn_html = WebView.cell2html(cell.pawn)
+        return ("<td class=%s>%s</td>" %
+                (type(cell).__name__, pawn_html))
+
+    @staticmethod
+    def game2html(game):
+        def row2html(row):
+            for cell in row:
+                    yield(WebView.cell2html(cell))
+
+        def body_html():
+            for row in game.cells:
+                yield "<tr>" + "".join(row2html(row)) + "</tr>"
+
+        return ("<table>\n%s\n</table>" %
+                '\n'.join(body_html()))
+
+    def render(self, game):
+        pass

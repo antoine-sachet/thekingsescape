@@ -1,5 +1,6 @@
-from thekingsescape.controller import TextController
-from thekingsescape.view import TextView, WebView
+#!/usr/bin/python3
+from thekingsescape.textgame.controller import TextController
+from thekingsescape.textgame.view import TextView
 from sys import stdout
 import logging
 
@@ -20,13 +21,8 @@ def app_text():
 
 
 def app_web():
-
-    controller = TextController(stdout)
-    v = WebView()
-    controller.registerView(v)
-
-    controller.start()
+    pass
 
 
 if(__name__ == "__main__"):
-    app_web()
+    app_text()

@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-from thekingsescape.textgame.controller import TextController
-from thekingsescape.textgame.view import TextView
 from sys import stdout
 import logging
 
@@ -12,6 +10,8 @@ logger.addHandler(handler)
 
 
 def app_text():
+    from thekingsescape.text_app.controller import TextController
+    from thekingsescape.text_app.view import TextView
 
     controller = TextController(stdout)
     v = TextView(stdout)
@@ -21,8 +21,10 @@ def app_text():
 
 
 def app_web():
-    pass
+    from thekingsescape.webcontroller import WebController
+    wc = WebController()
+    wc.start()
 
 
 if(__name__ == "__main__"):
-    app_text()
+    app_web()
